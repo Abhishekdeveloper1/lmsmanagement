@@ -43,6 +43,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+         // ✅ Add this custom private disk
+    'private' => [
+        'driver' => 'local',
+        'root' => storage_path('app/private'),
+        'visibility' => 'private',
+    ],
 
         's3' => [
             'driver' => 's3',
