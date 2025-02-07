@@ -27,65 +27,31 @@
            
             </div> -->
 
+
 <div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
     <div class="row">
-        <!-- Example Video Embed Card -->
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Embedded Video</h4>
-                    <h6 class="card-subtitle">Google Drive Embedded Video</h6>
-                    
-                    <!-- Embedded Video -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://drive.google.com/file/d/1b1lgZH5smJvcwaFtQyvxy1vdNQbMqskG/preview" 
-                                width="100%" height="400" 
-                                allow="autoplay; fullscreen">
-                        </iframe>
-                    </div>
+        @foreach($allcoursesLists as $allcoursesList)
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <div class="card text-center">  <!-- Center align content -->
+                    <div class="card-body">
+                        <!-- Course Name -->
+                        <h4 class="card-title">{{ $allcoursesList->name }}</h4>
+                        <!-- Course Description -->
+                        <h6 class="card-subtitle text-muted">{{ $allcoursesList->description }}</h6>
+                        
+                        <!-- Clickable Image to Open Video -->
+                        <div class="mt-3">
+                            <a href="{{ route('coursesByid', ['id' => encrypt($allcoursesList->id.'.'.$allcoursesList->name.'.'.$allcoursesList->category_id)]) }}">
+                                <img src="{{asset('assets/images/couseimages.jpg')}}" 
+                                     alt="Course Image" class="img-fluid rounded" 
+                                     style="width:100%; max-height:250px; cursor:pointer;">
+                            </a>
+                        </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Embedded Video</h4>
-                    <h6 class="card-subtitle">Google Drive Embedded Video</h6>
-                    
-                    <!-- Embedded Video -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://drive.google.com/file/d/1b1lgZH5smJvcwaFtQyvxy1vdNQbMqskG/preview" 
-                                width="100%" height="400" 
-                                allow="autoplay; fullscreen">
-                        </iframe>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Embedded Video</h4>
-                    <h6 class="card-subtitle">Google Drive Embedded Video</h6>
-                    
-                    <!-- Embedded Video -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://drive.google.com/file/d/1b1lgZH5smJvcwaFtQyvxy1vdNQbMqskG/preview" 
-                                width="100%" height="400" 
-                                allow="autoplay; fullscreen">
-                        </iframe>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- Add More Video Cards Here If Needed -->
-        
+        @endforeach
     </div>
 </div>
 

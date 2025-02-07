@@ -28,5 +28,5 @@ Route::get('/course-pdf/{filename}', [CourseController::class, 'showPdf'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/allcourses', [CourseController::class, 'allcourses'])->name('allcourses');
-
+Route::get('/allcourses', [CourseController::class, 'allcourses'])->middleware('auth')->name('allcourses');
+Route::get('/allcourses/{id}', [CourseController::class, 'coursesByid'])->middleware('auth')->name('coursesByid');

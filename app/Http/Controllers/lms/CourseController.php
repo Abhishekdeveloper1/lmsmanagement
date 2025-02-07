@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class CourseController extends Controller
 {
@@ -141,8 +143,38 @@ public function showPdf($filename)
 
 public function allcourses(Request $request)
 {
+    
+    $allcoursesLists = Course::join('course_enrollments', 'courses.category_id', '=', 'course_enrollments.course_id')
+    ->where('course_enrollments.user_id', Auth::user()->id)
+    ->selectRaw('MIN(courses.id) as id, courses.name, courses.description,courses.category_id')
+    ->groupBy('courses.name', 'courses.description','courses.category_id')
+    ->orderByRaw('MIN(courses.id) DESC')
+    ->get();
 
-    return view('lms.allcourses');
+    return view('lms.allcourses',compact('allcoursesLists'));
 }
+public function coursesByid(Request $request,$id)
+{
+    try {
+        // Decrypt the encrypted ID
+        $decryptedId = Crypt::decrypt($id);
+// echo $decryptedId;die;
+        // Debugging output
+        $decryptedId =explode('.',$decryptedId);
+        $courseID=$decryptedId[0];
+        $courseName=$decryptedId[1];
+        $categoryId=$decryptedId[2];
 
+        $courseLists=Course::where('name',$courseName)->where('category_id',$categoryId)->get();
+    //    echo '<pre>'; print_r($courseList);
+    //     die;
+return view('lms.course',compact('courseLists'));
+        // You can then use $decryptedId to fetch the course details
+        // $course = Course::findOrFail($decryptedId);
+        // return view('course_detail', compact('course'));
+    } catch (\Exception $e) {
+        // Handle decryption failure (e.g., invalid or tampered ID)
+        return abort(404, 'Invalid ID');
+    }
+}
 }
