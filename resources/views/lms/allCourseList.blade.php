@@ -56,11 +56,17 @@
                                         </div>
                                     </div> -->
                                     <div class="col-md-6 col-lg-3 col-xlg-3">
-    <div class="card card-hover" data-toggle="modal" data-target="#addCourseModal">
+    <!-- <div class="card card-hover" data-toggle="modal" data-target="#addCourseModal">
         <div class="p-2 bg-primary text-center">
             <h6 class="text-white">Add New Course</h6>
         </div>
-    </div>
+    </div> -->
+    <div class="card card-hover text-center">
+    <button type="button" class="btn btn-primary p-3 w-100" data-toggle="modal" data-target="#addCourseModal">
+        Add New Course
+    </button>
+</div>
+
 </div>
                                     <!-- Column -->
                                     <!-- <div class="col-md-6 col-lg-3 col-xlg-3">
