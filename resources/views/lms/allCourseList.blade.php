@@ -169,7 +169,7 @@
             </div>
 @endsection
 <!-- Modal for adding a new course -->
-<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+<div class="modal fade" id="addCourseModal" tabindex="-1" role="dialog" aria-labelledby="addCourseModalLabel" aria-hidden="true" style="display:none">
     <div class="modal-dialog modal-lg" role="document"> <!-- modal-lg for larger width -->
         <div class="modal-content">
             <div class="modal-header bg-primary text-white"> <!-- Styled header -->
@@ -219,4 +219,4 @@
                 </button>
             </div>
         @endif -->
-       
+    

@@ -156,26 +156,26 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('home') }}"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+                        <li class="nav-small-cap"><span class="hide-menu">Course Management</span></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link" href="ticket-list.html"
-                                aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                    class="hide-menu">Ticket List
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('allcourses') }}"
+                                aria-expanded="false"><i data-feather="book" class="feather-ico"></i><span
+                                    class="hide-menu">My courses
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"
-                                aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span
-                                    class="hide-menu">Chat</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('allCourseList') }}"
+                                aria-expanded="false"><i data-feather="book" class="feather-icon"></i><span
+                                    class="hide-menu">Course List</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"
-                                aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="book" class="feather-icon"></i><span
                                     class="hide-menu">Calendar</span></a></li>
 
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Components</span></li>
+                        <!--<li class="nav-small-cap"><span class="hide-menu">Components</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                                     class="hide-menu">Forms </span></a>
@@ -296,8 +296,8 @@
                                 aria-expanded="false"><i data-feather="sidebar" class="feather-icon"></i><span
                                     class="hide-menu">Cards
                                 </span></a>
-                        </li>
-                        <li class="list-divider"></li>
+                        </li>-->
+                    <!--    <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
@@ -365,7 +365,7 @@
                                     class="hide-menu">Documentation</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
                                 aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                                    class="hide-menu">Logout</span></a></li>
+                                    class="hide-menu">Logout</span></a></li>-->
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
