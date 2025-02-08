@@ -8,6 +8,7 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
 
 class CourseController extends Controller
 {
@@ -176,5 +177,42 @@ return view('lms.course',compact('courseLists'));
         // Handle decryption failure (e.g., invalid or tampered ID)
         return abort(404, 'Invalid ID');
     }
+}
+public function allCourseList(Request $request)
+{
+    $courseLists = Course::with('category')->orderBy('id', 'desc')->paginate(5);
+
+    return view('lms.allCourseList',compact('courseLists'));
+}
+public function addCoursedata(Request $request)
+{
+    $validateData=$request->validate([
+        'name'=>'required|string|max:255',
+        'video_path'=> 'nullable|string|required_without:pdf_path',
+        'pdf_path'=> 'nullable|string|required_without:video_path',
+        'category_id'=>'required',
+        'description'=>'required'
+
+    ]);
+    try {
+        $categoryId = Crypt::decrypt($validateData['category_id']);
+    } catch (\Exception $e) {
+        // Handle decryption failure (invalid/tampered data)
+        return redirect()->back()->withErrors('Invalid category selection.');
+    }
+
+    $course = Course::create([
+        'name'         => $validateData['name'],
+        'video_path'   => $validateData['video_path'],
+        'pdf_path'     => $validateData['pdf_path'],
+        'category_id'  => $categoryId,
+        'description'  => $validateData['description'],
+    ]);
+    // return redirect()->route('allCourseList')->with('success', 'Course added successfully!');
+    // Session::flash('success', 'This is a message!'); 
+
+    return   redirect('allCourseList')->with('success', 'Course added successfully!'); 
+
+// print_r($request->all());die;
 }
 }

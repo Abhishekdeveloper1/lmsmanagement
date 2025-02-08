@@ -383,6 +383,22 @@
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <div class="page-breadcrumb">
+            @if(session('success') && !empty(session('success')))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {!! session('success') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if(session('error') && !empty(session('error')))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {!! session('error') !!}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
@@ -460,7 +476,12 @@
 <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
 <script src="{{ asset('assets/dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
-
+<script>
+    // Automatically hide the alert messages after 3 seconds (3000ms)
+    setTimeout(function() {
+        $(".alert").fadeOut("slow");
+    }, 3000);
+</script>
 </body>
 
 </html>
