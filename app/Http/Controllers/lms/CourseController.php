@@ -180,7 +180,7 @@ return view('lms.course',compact('courseLists'));
 }
 public function allCourseList(Request $request)
 {
-    $courseLists = Course::with('category')->orderBy('id', 'desc')->paginate(5);
+    $courseLists = Course::with('category')->orderBy('id', 'desc')->paginate(2);
 
     return view('lms.allCourseList',compact('courseLists'));
 }
@@ -192,7 +192,7 @@ public function addCoursedata(Request $request)
         'pdf_path'=> 'nullable|string|required_without:video_path',
         'category_id'=>'required',
         'description'=>'required'
-
+        // G/EgZ8men?e!F^2
     ]);
     try {
         $categoryId = Crypt::decrypt($validateData['category_id']);
@@ -214,5 +214,16 @@ public function addCoursedata(Request $request)
     return   redirect('allCourseList')->with('success', 'Course added successfully!'); 
 
 // print_r($request->all());die;
+}
+public function getCourses()
+{
+    $courses = Course::with('category')->select('id', 'name', 'video_path', 'pdf_path', 'category_id', 'description');
+    
+    return DataTables::of($courses)
+        ->addColumn('category_name', function($course) {
+            return $course->category->name;
+        })
+        ->rawColumns(['video_path', 'pdf_path'])
+        ->make(true);
 }
 }

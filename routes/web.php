@@ -32,3 +32,4 @@ Route::get('/allcourses', [CourseController::class, 'allcourses'])->middleware('
 Route::get('/allcourses/{id}', [CourseController::class, 'coursesByid'])->middleware('auth')->name('coursesByid');
 Route::get('/allCourseList', [CourseController::class, 'allCourseList'])->middleware('auth')->name('allCourseList');
 Route::post('/addCoursedata', [CourseController::class, 'addCoursedata'])->middleware('auth')->name('addCoursedata');
+// Route::get('/courses/data', [CourseController::class, 'getCourses'])->name('courses.data');
