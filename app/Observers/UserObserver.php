@@ -27,7 +27,7 @@ class UserObserver
      */
     public function deleted(User $user): void
     {
-        //
+        $user->post()->delete();
     }
 
     /**
